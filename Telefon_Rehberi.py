@@ -27,6 +27,42 @@ def kisiArama() :
                         print ara[i]
                         break
         dosya.close()
+        
+
+def kayitDegisim() :
+
+        dosya = open("rehber.txt","r")
+
+        kisi = raw_input("Kayiti degistirilecek kisinin ismini giriniz: ")
+
+        kisiler = dosya.readlines()
+
+        dizi = []
+
+        for i in range(len(kisiler)) :
+
+                digerKisi = kisiler[i]
+                degistirilecek = digerKisi.find(kisi)
+
+                if degistirilecek == -1 :
+
+                        dizi.append(digerKisi)
+
+                else :
+                        a = raw_input("Yeni kullanici adini giriniz: ")
+                        b = raw_input("Kullanicinin numarasini giriniz: ")
+
+                        yeni = a + "\t" + b + "\n"
+
+                        dizi.append(yeni)
+        dosya.close()
+
+        #Dosya yaziliyor...
+        dosya = open("rehber.txt","w")
+
+        dosya.writelines(dizi)
+        dosya.close()
+
 
 def silme() :
 	
@@ -79,9 +115,10 @@ def rehberiSilme() :
 print "\t","\t","MENU"
 print "1.Kayit Ekleme"
 print "2.Kisi Arama"
-print "3.Rehberden Kayit Silme"
-print "4.Kayit Listesi"
-print "5.Rehber Silme"
+print "3.Kayit Duzenle"
+print "4.Rehberden Kayit Silme"
+print "5.Kayit Listesi"
+print "6.Rehber Silme"
 
 secim = input("Seciminizi giriniz: ")
 
@@ -92,11 +129,14 @@ elif secim == 2 :
 	kisiArama()
 
 elif secim == 3 :
-	kayitListeleme()
-	silme()
+	kayitDegisim()
 
 elif secim == 4 :
 	kayitListeleme()
+	silme()
 
 elif secim == 5 :
+	kayitListeleme()
+
+elif secim == 6 :
 	rehberiSilme()
