@@ -9,6 +9,24 @@ def kayitEkle() :
 
 	dosya.write(satir)
 	dosya.close()
+	
+def kisiArama() :
+
+        dosya = open("rehber.txt","r")
+
+        aranan = raw_input("Aramak istediginiz kisinin ismini giriniz: ")
+
+        ara = dosya.readlines()
+
+        for i in range(len(ara)) :
+
+                sonraki = ara[i]
+                bulunan = sonraki.find(aranan)
+
+                if bulunan != -1 :
+                        print ara[i]
+                        break
+        dosya.close()
 
 def silme() :
 	
@@ -60,9 +78,10 @@ def rehberiSilme() :
 
 print "\t","\t","MENU"
 print "1.Kayit Ekleme"
-print "2.Rehberden Kayit Silme"
-print "3.Kayit Listesi"
-print "4.Rehber Silme"
+print "2.Kisi Arama"
+print "3.Rehberden Kayit Silme"
+print "4.Kayit Listesi"
+print "5.Rehber Silme"
 
 secim = input("Seciminizi giriniz: ")
 
@@ -70,11 +89,14 @@ if secim == 1 :
 	kayitEkle()
 
 elif secim == 2 :
-	kayitListeleme()
-	silme()
+	kisiArama()
 
 elif secim == 3 :
 	kayitListeleme()
+	silme()
 
 elif secim == 4 :
+	kayitListeleme()
+
+elif secim == 5 :
 	rehberiSilme()
