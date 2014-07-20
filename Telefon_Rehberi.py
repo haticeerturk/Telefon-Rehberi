@@ -1,14 +1,32 @@
 def kayitEkle() :
 
-	dosya = open("rehber.txt","a")
-
+	ayni_kisi = 0
 	m = raw_input("Kullanici adini giriniz: ")
 	h = raw_input("Kullanicinin telefon numarasini giriniz: ")
 
+	dosya = open("rehber.txt","r")
+
 	satir = m + "\t"+ h+ "\n"
 
-	dosya.write(satir)
+	kayit = dosya.readlines()
+	
+	for i in range(len(kayit)) :
+		
+		siradaki = kayit[i]
+		ayni = siradaki.find(m)
+		
+		if ayni != -1 :
+			ayni_kisi = 1
+			
 	dosya.close()
+	
+	if ayni_kisi == 1 :
+		print "Bu kisi zaten kayitli!"
+		
+	else :
+		dosya = open("rehber.txt","a")
+		dosya.write(satir)
+		dosya.close()
 	
 def kisiArama() :
 
