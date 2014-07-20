@@ -30,6 +30,7 @@ def kayitEkle() :
 	
 def kisiArama() :
 
+	kisi_yok = 0
         dosya = open("rehber.txt","r")
 
         aranan = raw_input("Aramak istediginiz kisinin ismini giriniz: ")
@@ -43,7 +44,12 @@ def kisiArama() :
 
                 if bulunan != -1 :
                         print ara[i]
-                        break
+                 
+                else :
+                	kisi_yok = 1
+        if kisi_yok == 1 :
+        	print "Bu kisi kayitli degil!"
+        	
         dosya.close()
         
 
